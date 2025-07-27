@@ -1,4 +1,5 @@
 ﻿using Emp_Auth_Crud.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Emp_Auth_Crud.DAL
 {
@@ -14,6 +15,16 @@ namespace Emp_Auth_Crud.DAL
             _context.Employees.Add(employee);
             _context.SaveChanges();
             return employee;
+        }
+        public Employee GetEmployeeById(int id)
+        {
+            var result = _context.Employees.Find(id);
+            if(result == null)
+            {
+                return null;
+            }
+        
+            return result;
         }
     }
 }

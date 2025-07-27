@@ -20,6 +20,15 @@ namespace Emp_Auth_Crud.Controllers
         {
             return _addEmpServices.AddEmployeeRecords(empRecordDto);
         }
-        
+        [HttpGet("GetEmployeeById/{id}")]
+        public IActionResult GetEmployeeById(int id)
+        {
+            var employee = _addEmpServices.GetEmployeeById(id);
+            if(employee is null)
+            {
+                return NotFound($"Employee with EmpId {id} is not found. ");
+            }
+            return Ok(employee);
+        }
     }
 }

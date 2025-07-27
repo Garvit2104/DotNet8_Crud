@@ -28,5 +28,23 @@ namespace Emp_Auth_Crud.BLL
            var result =  _addEmpRepo.AddEmployee(employeeEntity);
             return new OkObjectResult(result);
         }
+        public EmployeeResponseDTO GetEmployeeById(int id)
+        {
+            var employee = _addEmpRepo.GetEmployeeById(id);
+
+            if(employee == null)
+            {
+                return null;
+            }
+            return new EmployeeResponseDTO
+            {
+                EmpId = employee.EmpId,
+                FirstName = employee.FirstName,
+                LastName = employee.LastName,
+                Email = employee.Email,
+                Role = employee.Role,
+                Salary = employee.Salary
+            };
+        }
     }
 }

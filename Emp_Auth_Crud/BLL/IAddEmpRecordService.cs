@@ -5,6 +5,8 @@ namespace Emp_Auth_Crud.BLL
 {
     public interface IAddEmpRecordService
     {
-        public IActionResult AddEmployeeRecords(AddEmpRecordDTO empRecordDto);
+        IActionResult AddEmployeeRecords(AddEmpRecordDTO empRecordDto);
+
+        EmployeeResponseDTO GetEmployeeById(int id);
     }
 }
