@@ -1,4 +1,5 @@
-﻿using Emp_Auth_Crud.Models;
+﻿using Emp_Auth_Crud.DTOs;
+using Emp_Auth_Crud.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Emp_Auth_Crud.DAL
@@ -26,5 +27,12 @@ namespace Emp_Auth_Crud.DAL
         
             return result;
         }
+        public Employee UpdateEmpRecord(Employee employee)
+        {
+            _context.Employees.Update(employee);
+            _context.SaveChanges();
+            return employee;
+        }
+
     }
 }

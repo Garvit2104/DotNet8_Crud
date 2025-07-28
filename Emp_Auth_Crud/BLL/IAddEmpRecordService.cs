@@ -8,5 +8,7 @@ namespace Emp_Auth_Crud.BLL
         IActionResult AddEmployeeRecords(AddEmpRecordDTO empRecordDto);
 
         EmployeeResponseDTO GetEmployeeById(int id);
+
+        AddEmpRecordDTO UpdateEmployeeRecord(AddEmpRecordDTO updateRecordDTO, int id);
     }
 }

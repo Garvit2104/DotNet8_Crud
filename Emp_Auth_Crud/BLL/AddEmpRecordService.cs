@@ -29,13 +29,14 @@ namespace Emp_Auth_Crud.BLL
             return new OkObjectResult(result);
         }
         public EmployeeResponseDTO GetEmployeeById(int id)
-        {
+        {                    // calling the repo to get the details of {id}
             var employee = _addEmpRepo.GetEmployeeById(id);
 
             if(employee == null)
             {
                 return null;
             }
+            // {id} employee exist fetch the details and convert the entity details to responseDTO
             return new EmployeeResponseDTO
             {
                 EmpId = employee.EmpId,
@@ -45,6 +46,37 @@ namespace Emp_Auth_Crud.BLL
                 Role = employee.Role,
                 Salary = employee.Salary
             };
+        }
+        public AddEmpRecordDTO UpdateEmployeeRecord(AddEmpRecordDTO updateRecordDTO, int id)
+        {
+            var employee = _addEmpRepo.GetEmployeeById(id);
+
+            if(employee == null)
+            {
+                return null;
+            }
+
+            employee.FirstName = updateRecordDTO.FirstName;
+            employee.LastName = updateRecordDTO.LastName;
+            employee.Email = updateRecordDTO.Email;
+            employee.Password = updateRecordDTO.Password;
+            employee.Role = updateRecordDTO.Role;
+            employee.Salary = updateRecordDTO.Salary;
+            employee.DepartmentId = updateRecordDTO.DepartmentId;
+
+            var updatedEmployee = _addEmpRepo.UpdateEmpRecord(employee);
+
+
+            return new AddEmpRecordDTO
+            {
+
+                FirstName = employee.FirstName,
+                LastName = employee.LastName,
+                Email = employee.Email,
+                Role = employee.Role,
+                Salary = employee.Salary
+            }; 
+            
         }
     }
 }
