@@ -22,13 +22,27 @@ namespace Emp_Auth_Crud.Controllers
         }
         [HttpGet("GetEmployeeById/{id}")]
         public IActionResult GetEmployeeById(int id)
-        {
+        {                                       // calling service to fetch {id} result and store
             var employee = _addEmpServices.GetEmployeeById(id);
             if(employee is null)
             {
                 return NotFound($"Employee with EmpId {id} is not found. ");
             }
             return Ok(employee);
+        }
+
+        [HttpPut("UpdateEmpRecord/{id}")]
+
+        public IActionResult UpdateEmployeeRecord(AddEmpRecordDTO updateRecordDTO, int id)
+        {
+            var result = _addEmpServices.UpdateEmployeeRecord(updateRecordDTO, id);
+            if(result == null)
+            {
+                return NotFound($"Employee with EmpId {id} is not exist");
+            }
+                return Ok(result);
+
+           
         }
     }
 }
