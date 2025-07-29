@@ -1,5 +1,6 @@
 ﻿using Emp_Auth_Crud.DTOs;
 using Emp_Auth_Crud.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Emp_Auth_Crud.DAL
@@ -32,6 +33,23 @@ namespace Emp_Auth_Crud.DAL
             _context.Employees.Update(employee);
             _context.SaveChanges();
             return employee;
+        }
+
+        public bool DeleteEmpRecord(int id)
+        {
+            var employee = _context.Employees.FirstOrDefault(e=>e.DepartmentId == id);
+            if(employee == null)
+            {
+                return false;
+            }
+            _context.Employees.Remove(employee);
+            _context.SaveChanges();
+            return true;
+        }
+
+        public List<Employee> GetAllEmployee()
+        {
+            return _context.Employees.ToList<Employee>();
         }
 
     }

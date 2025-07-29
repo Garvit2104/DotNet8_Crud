@@ -78,5 +78,32 @@ namespace Emp_Auth_Crud.BLL
             }; 
             
         }
+        public bool DeleteEmpRecord(int id)
+        {
+            return _addEmpRepo.DeleteEmpRecord(id);
+            
+        }
+        public List<EmployeeResponseDTO> GetAllEmployee()
+        {
+           List<Employee> employees  =  _addEmpRepo.GetAllEmployee();
+           List<EmployeeResponseDTO> responsesDTO = new();
+
+            foreach (Employee emp in employees)
+            {
+                EmployeeResponseDTO responseDTO = new EmployeeResponseDTO();
+                responseDTO.EmpId = emp.EmpId;
+                responseDTO.FirstName = emp.FirstName;
+                responseDTO.LastName = emp.LastName;
+                responseDTO.Email = emp.Email;
+                responseDTO.Role = emp.Role;
+                responseDTO.Salary = emp.Salary;
+
+                responsesDTO.Add(responseDTO); // Add the mapped DTO to the list
+
+
+            }
+            return responsesDTO;
+
+        }
     }
 }

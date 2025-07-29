@@ -10,5 +10,9 @@ namespace Emp_Auth_Crud.BLL
         EmployeeResponseDTO GetEmployeeById(int id);
 
         AddEmpRecordDTO UpdateEmployeeRecord(AddEmpRecordDTO updateRecordDTO, int id);
+
+         bool DeleteEmpRecord(int id);
+
+        List<EmployeeResponseDTO> GetAllEmployee();
     }
 }
