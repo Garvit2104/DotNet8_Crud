@@ -44,5 +44,21 @@ namespace Emp_Auth_Crud.Controllers
 
            
         }
+        [HttpDelete("DeleteEmpRecord/{id}")]
+        public IActionResult DeleteEmployeeRecord(int id)
+        {
+            var result = _addEmpServices.DeleteEmpRecord(id);
+            if(!result)
+            {
+                return NotFound($"Employee with id {id} not found");
+            }
+            return Ok($"Employee Record with id {id} sucessfully Deleted");
+        }
+        [HttpPost("GetAllEmpRecord")]
+        public IActionResult GetAllEmployeeRecord()
+        {
+            var result = _addEmpServices.GetAllEmployee();
+            return Ok(result);
+        }
     }
 }
